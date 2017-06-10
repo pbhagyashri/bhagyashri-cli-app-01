@@ -3,8 +3,10 @@ class NationalParks::Park
 
   @@all = []
 
-  def initialize(name)
+  def initialize(name, highlight)
     @name = name
+    @highlight = highlight
+
     @@all << self
   end
 
@@ -12,11 +14,22 @@ class NationalParks::Park
     @@all
   end
 
+  def self.new_from_index_page(r)
+    self.new(
+      r.css(".post-title").text,
+      r.css(".entry p").text
+      )
+  end
+
   def doc
     @doc = Nokogiri::HTML(open("https://www.national-park.com/category/parks/"))
   end
 
   def highlight
-    @highlight = doc.css(".entry p").last.text.strip
+    @highlight = doc.css(".entry p").shift.text.strip
+  end
+
+  def nameS
+    @name = doc.css(".post-title").shift.text.strip
   end
 end
