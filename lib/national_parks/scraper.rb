@@ -28,9 +28,9 @@ class NationalParks::Scraper
 
   def assign_highlights
     i = 0
-    while i < highlight_scraper.size
+    while i < 10
       make_new_parks.collect do |park|
-        park.highlight = highlight_scraper[i].text
+        park.highlight = highlight_scraper[i += 1].text
         binding.pry
       end
     end
