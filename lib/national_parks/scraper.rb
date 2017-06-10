@@ -2,9 +2,12 @@ class NationalParks::Scraper
   attr_accessor :page
 
   def park_scraper
-    page = Nokogiri::HTML(open("https://www.national-park.com/category/parks/"))
     parks_title = page.css(".post-title")
   end #park_scraper
+
+  def highlight_scraper
+    park_highlight = page.css(".entry p")
+  end
 
   def parks_from_scraper
     park_titles = []
@@ -20,7 +23,17 @@ class NationalParks::Scraper
       all_parks << NationalParks::Park.new(a)
     end #each
     all_parks
-    binding.pry
+
   end #make_new_parks
+
+  def assign_highlights
+    make_new_parks.each do |park|
+      park.highlight
+    end
+  end
+
+  def page
+    @page = Nokogiri::HTML(open("https://www.national-park.com/category/parks/"))
+  end
 
 end
