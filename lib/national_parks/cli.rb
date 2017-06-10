@@ -1,14 +1,14 @@
 class NationalParks::CLI
   def call
-    puts "Hello"
+    start
   end #call
 
   def start
     input = nil
-
+    puts "Enter the number of the National Park you would like to learn more about!"
     while input != "exit"
       input = gets.strip.downcase
-      puts "Enter the number of the National Park you would like to learn more about!"
+
       case input
         when "1"
           puts "Welcome to the national park"
