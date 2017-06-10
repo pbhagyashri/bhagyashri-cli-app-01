@@ -4,33 +4,13 @@ class NationalParks::Scraper
   def park_scraper
     page = Nokogiri::HTML(open("https://www.national-park.com/category/parks/"))
     parks_title = page.css(".post-title")
-
-<<<<<<< HEAD
-    all_park_titles = []
-    parks_title.each do |park|
-       all_park_titles << park.text.strip.
-    end #each
-    all_park_titles.drop(1)
   end #park_scraper
 
   def make_new_parks
     park_scraper.each do |a|
       new = NationalParks::Park.new_from_index_page(a)
+      binding.pry
     end #each
   end #make_new_parks
-end
-=======
-   def make_new_parks
-     park_scraper.each do |a|
-       new = NationalParks::Park.new_from_index_page(a)
-       binding.pry
-     end
-   end
 
-  def self.details
-    doc = Nokogiri::HTML(open("https://www.national-park.com/welcome-to-yosemite-national-park/"))
-    titles = doc.css("strong")
-  end
-
->>>>>>> new-branch
 end
