@@ -3,6 +3,11 @@ class NationalParks::CLI
     start
   end #call
 
+  def list_parks
+    @parks = NationalParks::Park.create_park
+    binding.pry
+  end
+
   def start
     input = nil
     puts "Enter the number of the National Park you would like to learn more about!"
