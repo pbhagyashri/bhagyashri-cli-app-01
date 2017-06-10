@@ -3,9 +3,9 @@ class NationalParks::Park
 
   @@all = []
 
-  def initialize(name, highlight)
+  def initialize(name)
     @name = name
-    @highlight = highlight
+    #@highlight = highlight
 
     @@all << self
   end
@@ -16,8 +16,8 @@ class NationalParks::Park
 
   def self.new_from_index_page(r)
     self.new(
-       r.css(".post-title").text,
-       r.css(".entry p").text
+       r.css(".post-title").text
+       #r.css(".entry p").text
       )
   end
 
@@ -33,7 +33,4 @@ class NationalParks::Park
 
   end
 
-  def name
-    @name = doc.css(".post-title").pop.text.strip
-  end
 end

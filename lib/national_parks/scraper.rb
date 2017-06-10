@@ -6,11 +6,21 @@ class NationalParks::Scraper
     parks_title = page.css(".post-title")
   end #park_scraper
 
+  def parks_from_scraper
+    park_titles = []
+    park_scraper.each do|park_title|
+      park_titles << NationalParks::Park.new(park_title.text.strip)
+    end
+    park_titles.drop(1)
+  end
+
   def make_new_parks
-    park_scraper.each do |a|
-      new = NationalParks::Park.new_from_index_page(a)
-      binding.pry
+    all_parks = []
+    parks_from_scraper.each do |a|
+      all_parks << NationalParks::Park.new(a)
     end #each
+    all_parks
+    binding.pry
   end #make_new_parks
 
 end
