@@ -16,7 +16,7 @@ class NationalParks::Park
 
   def self.new_from_index_page(r)
     self.new(
-      r.css(".post-title").text,
+      r.css(".post-title:n").text,
       r.css(".entry p").text
       )
   end
@@ -26,10 +26,10 @@ class NationalParks::Park
   end
 
   def highlight
-    @highlight = doc.css(".entry p").shift.text.strip
+    @highlight = doc.css(".entry p").text.strip
   end
 
-  def nameS
-    @name = doc.css(".post-title").shift.text.strip
+  def name
+    @name = doc.css(".post-title").text.strip
   end
 end
