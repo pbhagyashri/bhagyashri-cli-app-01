@@ -18,3 +18,4 @@ class NationalParks::Scraper
     end #each
   end #make_new_parks
 end
+end
