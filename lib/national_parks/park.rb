@@ -12,4 +12,5 @@ class NationalParks::Park
     @@all
   end
 
+
 end

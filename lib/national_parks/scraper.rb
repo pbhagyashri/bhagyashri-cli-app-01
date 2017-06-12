@@ -23,18 +23,21 @@ class NationalParks::Scraper
     all_parks = []
     i = 0
     while i < 10
-      parks_from_scraper.each do |park|
-       park.highlight = highlight_scraper[i += 1]
-       all_parks << park
+       parks_from_scraper.each do |park|
+         park.highlight = highlight_scraper[i += 1]
+         all_parks << park
        i+= 1
       end
     end
     all_parks
-
   end
 
   def page
     @page = Nokogiri::HTML(open("https://www.national-park.com/category/parks/"))
+  end
+
+  def details
+    @details = Nokogiri::HTML(open(""))
   end
 
 end
