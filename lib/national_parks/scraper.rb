@@ -48,9 +48,12 @@ class NationalParks::Scraper
     @page = Nokogiri::HTML(open("https://www.national-park.com/category/parks/"))
   end
 
-  # def detail_page
-  #   parks_from_scraper.each do |park|
-  #   @detail_page = NationalParks::CLI:Details.new(name)
-  # end
+  def detail_page
+   park_titles.collect do |park|
+     @detail_page = NationalParks::Details.new(park)
+     @detail_page.doc.css("h2 + p").text
+     binding.pry
+  end
+  end
 
 end

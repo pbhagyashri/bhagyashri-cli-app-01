@@ -1,4 +1,4 @@
-class NationalParks::CLI:Details
+class NationalParks::Details
   attr_accessor :doc
   def initialize(park_name)
     @park_name = park_name
