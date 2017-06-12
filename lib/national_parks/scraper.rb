@@ -23,7 +23,6 @@ class NationalParks::Scraper
       all_parks << NationalParks::Park.new(a)
     end #each
     all_parks
-
   end #make_new_parks
 
   def assign_highlights
