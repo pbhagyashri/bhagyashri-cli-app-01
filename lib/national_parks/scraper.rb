@@ -19,9 +19,7 @@ class NationalParks::Scraper
 
   def make_new_parks
     all_parks = []
-    parks_from_scraper.each do |a|
-      all_parks << NationalParks::Park.new(a)
-    end #each
+    parks_from_scraper.each {|a| all_parks << NationalParks::Park.new(a.name)}
     all_parks
   end #make_new_parks
 
@@ -30,7 +28,6 @@ class NationalParks::Scraper
     while i < 10
       make_new_parks.collect do |park|
         park.highlight = highlight_scraper[i += 1].text
-        binding.pry
       end
     end
   end
