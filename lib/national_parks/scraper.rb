@@ -38,16 +38,50 @@ class NationalParks::Scraper
      @detail_page = NationalParks::Details.new(title)
      all_paras = @detail_page.doc.css(".entry-inner p")
 
+
      all_paras.any? do |p|
-       if p.text.include?("Establishment")
+       if p.text.include?("National park was established")
+          puts "Establishment"
+         puts "#{p.text}"
+         puts "                              "
+         puts "          ------------------------------          "
+         puts "                              "
+       end
+     end
+
+     all_paras.any? do |p|
+       if p.text.include?("camping")
+         puts "Camping"
+         puts "#{p.text}"
+         puts "                              "
+         puts "          ------------------------------          "
+         puts "                              "
+       end
+     end
+
+     all_paras.any? do |p|
+       if p.text.include?("Bicycle")
+         puts "Biking"
+         puts "#{p.text}"
+         puts "                              "
+         puts "          ------------------------------          "
+         puts "                              "
+       end
+     end
+
+
+     all_paras.any? do |p|
+       if p.text.include?("viewing wildlife")
+         puts "Wildlife"
          puts "#{p.text}"
        end
      end
 
-     @detail_page.doc.css("p:nth-of-type(6)").text.gsub("\u00A0", " ")
+     #@detail_page.doc.css("p:nth-of-type(6)").text.gsub("\u00A0", " ")
 
-     @detail_page.doc.css("p:nth-of-type(8)").text
-     binding.pry
+    # @detail_page.doc.css("p:nth-of-type(8)").text
+     #binding.pry
+
   end
 
 
