@@ -11,14 +11,21 @@ class NationalParks::CLI
   end
 
   def park_name
-    NationalParks::Scraper.park_titles
-    binding.pry
+    NationalParks::Scraper.new.parks_from_scraper.collect do |park|
+      first_half = park.name.gsub("Welcome to", "")
+      name = first_half.gsub("National Park", "").strip.downcase
+      if name.include?(" ")
+        name.gsub(" ", "-")
+      else
+        name
+      end
+    end
   end
 
-  def details
-    detail = NationalParks::Scraper.new.detail_page("yellowstone")
-    puts "#{detail}"
-  end
+  # def details
+  #   detail = NationalParks::Scraper.new.detail_page("name")
+  #   puts "#{detail}"
+  # end
 
   def start
     input = nil
@@ -27,11 +34,15 @@ class NationalParks::CLI
     while input != "exit"
       input = gets.strip.downcase
 
+         name = park_name[input.to_i]
+
+         details = NationalParks::Scraper.new.detail_page(name)
+
+         puts details
+         puts "                              "
+         puts "Please enter list or exit"
+
       case input
-        when "1"
-          details
-          puts "                              "
-          puts "Please enter list or exit"
         when "list"
           list_parks
         when "exit"
