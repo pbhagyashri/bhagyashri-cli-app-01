@@ -6,10 +6,7 @@ class NationalParks::CLI
 
   def list_parks
     NationalParks::Scraper.new.parks_from_scraper.each_with_index do |park, i|
-
       puts "#{i+1}. #{park.name.gsub("Welcome to","")}."
-    #  puts "#{i+1}. #{park.highlight}."
-
     end
   end
 
