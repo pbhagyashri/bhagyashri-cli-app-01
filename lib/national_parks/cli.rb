@@ -10,6 +10,11 @@ class NationalParks::CLI
     end
   end
 
+  def park_name
+    NationalParks::Scraper.park_titles
+    binding.pry
+  end
+
   def details
     detail = NationalParks::Scraper.new.detail_page("yellowstone")
     puts "#{detail}"
@@ -25,6 +30,7 @@ class NationalParks::CLI
       case input
         when "1"
           details
+          puts "                              "
           puts "Please enter list or exit"
         when "list"
           list_parks

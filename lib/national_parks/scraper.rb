@@ -38,23 +38,18 @@ class NationalParks::Scraper
      @detail_page = NationalParks::Details.new(title)
      all_paras = @detail_page.doc.css(".entry-inner p")
 
-
      all_paras.any? do |p|
        if p.text.include?("National park was established")
           puts "Establishment"
          puts "#{p.text}"
          puts "                              "
-         puts "          ------------------------------          "
-         puts "                              "
        end
      end
 
      all_paras.any? do |p|
-       if p.text.include?("camping")
+       if p.text.include?("camping" || "Backcountry")
          puts "Camping"
          puts "#{p.text}"
-         puts "                              "
-         puts "          ------------------------------          "
          puts "                              "
        end
      end
@@ -64,26 +59,41 @@ class NationalParks::Scraper
          puts "Biking"
          puts "#{p.text}"
          puts "                              "
-         puts "          ------------------------------          "
-         puts "                              "
        end
      end
-
 
      all_paras.any? do |p|
        if p.text.include?("viewing wildlife")
          puts "Wildlife"
          puts "#{p.text}"
+         puts "                              "
        end
      end
 
-     #@detail_page.doc.css("p:nth-of-type(6)").text.gsub("\u00A0", " ")
+     all_paras.any? do |p|
+       if p.text.include?("fishing")
+         puts "Fishing"
+         puts "#{p.text}"
+         puts "                              "
+       end
+     end
 
-    # @detail_page.doc.css("p:nth-of-type(8)").text
-     #binding.pry
+     all_paras.any? do |p|
+       if p.text.include?("hiking trails")
+         puts "Hiking"
+         puts "#{p.text}"
+         puts "                              "
+       end
+     end
 
-  end
+     all_paras.any? do |p|
+       if p.text.include?("lodging")
+         puts "Lodging "
+         puts "#{p.text}"
+         puts "                              "
+       end
+     end
 
-
+  end #detail_page
 
 end
