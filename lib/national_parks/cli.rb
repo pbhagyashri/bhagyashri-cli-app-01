@@ -5,7 +5,7 @@ class NationalParks::CLI
   end #call
 
   def list_parks
-    NationalParks::Scraper.new.assign_highlights.each_with_index do |park, i|
+    NationalParks::Scraper.new.parks_from_scraper.each_with_index do |park, i|
 
       puts "#{i+1}. #{park.name.gsub("Welcome to","")}."
     #  puts "#{i+1}. #{park.highlight}."
@@ -22,7 +22,8 @@ class NationalParks::CLI
 
       case input
         when "1"
-          puts "Welcome to the national park"
+          NationalParks::Park.all[0].name
+          binding.pry
         when "list"
           list_park
         when "exit"

@@ -5,9 +5,9 @@ class NationalParks::Scraper
     parks_title = page.css(".post-title")
   end #park_scraper
 
-  def highlight_scraper
-    park_highlight = page.css(".entry p")
-  end
+  # def highlight_scraper
+  #   park_highlight = page.css(".entry p")
+  # end
 
   def parks_from_scraper
     park_titles = []
@@ -18,7 +18,7 @@ class NationalParks::Scraper
 
   end
 
-  def park_titles
+  def self.park_titles
     parks_from_scraper.collect do |park|
       first_half = park.name.gsub("Welcome to", "")
       name = first_half.gsub("National Park", "").strip.downcase
@@ -34,26 +34,23 @@ class NationalParks::Scraper
     all_parks
   end #make_new_parks
 
-  def assign_highlights
-    i = 0
-    while i < 10
-      make_new_parks.collect do |park|
-        park.highlight = highlight_scraper[i += 1].text
-        binding.pry
-      end
-    end
-  end
+  # def assign_highlights
+  #   i = 0
+  #   while i < 10
+  #     make_new_parks.collect do |park|
+  #       park.highlight = highlight_scraper[i += 1]
+  #
+  #     end
+  #   end
+  # end
 
   def page
     @page = Nokogiri::HTML(open("https://www.national-park.com/category/parks/"))
   end
 
-  def detail_page
-   park_titles.collect do |park|
+  def detail_page(input)
      @detail_page = NationalParks::Details.new(park)
      @detail_page.doc.css("h2 + p").text
-     binding.pry
-  end
   end
 
 end
