@@ -5,4 +5,5 @@ class NationalParks::Details
     @doc = Nokogiri::HTML(open("https://www.national-park.com/welcome-to-#{park_name}-national-park/"))
   end
 
+
 end

@@ -10,6 +10,11 @@ class NationalParks::CLI
     end
   end
 
+  def details
+    detail = NationalParks::Scraper.new.detail_page("zion")
+    puts "#{detail}"
+  end
+
   def start
     input = nil
     puts "Enter the number of the National Park you would like to learn more about!"
@@ -19,8 +24,7 @@ class NationalParks::CLI
 
       case input
         when "1"
-          NationalParks::Park.all[0].name
-          binding.pry
+          details
         when "list"
           list_park
         when "exit"

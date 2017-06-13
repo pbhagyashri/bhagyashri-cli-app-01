@@ -12,5 +12,12 @@ class NationalParks::Park
     @@all
   end
 
+  def highlight
+
+
+  end
+
+
+
 
 end
