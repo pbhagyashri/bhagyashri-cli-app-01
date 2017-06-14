@@ -1,5 +1,5 @@
 class NationalParks::Park
-  attr_accessor :name, :location, :highlight, :url, :doc
+  attr_accessor :name, :doc
 
   @@all = []
 
@@ -11,13 +11,4 @@ class NationalParks::Park
   def self.all
     @@all
   end
-
-  def highlight
-
-
-  end
-
-
-
-
 end

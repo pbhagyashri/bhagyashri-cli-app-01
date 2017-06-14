@@ -1,6 +1,10 @@
 class NationalParks::Scraper
   attr_accessor :page
 
+  def page
+    @page = Nokogiri::HTML(open("https://www.national-park.com/category/parks/"))
+  end
+
   def park_scraper
     parks_title = page.css(".post-title")
   end #park_scrape
@@ -8,7 +12,9 @@ class NationalParks::Scraper
   def parks_from_scraper
     park_titles = []
     park_scraper.each do|park_title|
-      park_titles << NationalParks::Park.new(park_title.text.strip)
+      if !park_title.text.strip.include?("Historical")
+        park_titles << NationalParks::Park.new(park_title.text.strip)
+      end
     end
     park_titles.drop(1)
   end
@@ -21,8 +27,9 @@ class NationalParks::Scraper
     end
   end
 
-  def page
-    @page = Nokogiri::HTML(open("https://www.national-park.com/category/parks/"))
+  def visit_park(title)
+    @visit_park = NationalParks::Details.new(title)
+    @visit_park.doc.css("p a").attr("href").text
   end
 
   def detail_page(title)
@@ -31,14 +38,33 @@ class NationalParks::Scraper
      all_paras = @detail_page.doc.css(".entry-inner p")
 
      all_paras.any? do |p|
-       if p.text.include?("National park was established")
+       if p.text.include?("is located in")
+         puts "Location"
          puts "#{p.text}"
          puts "                              "
        end
      end
 
      all_paras.any? do |p|
-       if p.text.include?("camping" || "Backcountry")
+       if p.text.include?("national park located")
+         puts "Location"
+         puts "#{p.text}"
+         puts "                              "
+       end
+     end
+
+     all_paras.any? do |p|
+
+       if p.text.include?("was established")
+         puts "Establishment"
+         puts "#{p.text}"
+         puts "                              "
+       end
+     end
+
+     all_paras.any? do |p|
+       if p.text.include?("campsites")
+         puts "Camping"
          puts "#{p.text}"
          puts "                              "
        end
