@@ -21,14 +21,6 @@ class NationalParks::Scraper
     end
   end
 
-  def make_new_parks
-    all_parks = []
-    parks_from_scraper.each do |a|
-      all_parks << NationalParks::Park.new(a)
-    end #each
-    all_parks
-  end #make_new_parks
-
   def page
     @page = Nokogiri::HTML(open("https://www.national-park.com/category/parks/"))
   end
