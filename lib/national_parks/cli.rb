@@ -22,11 +22,6 @@ class NationalParks::CLI
     end
   end
 
-  # def details
-  #   detail = NationalParks::Scraper.new.detail_page("name")
-  #   puts "#{detail}"
-  # end
-
   def start
     input = nil
     puts "Enter the number of the National Park you would like to learn more about!"
@@ -34,22 +29,20 @@ class NationalParks::CLI
     while input != "exit"
       input = gets.strip.downcase
 
-         name = park_name[input.to_i]
-
+       if input.to_i > 0
+         name = park_name[input.to_i - 1]
          details = NationalParks::Scraper.new.detail_page(name)
-
          puts details
          puts "                              "
          puts "Please enter list or exit"
-
-      case input
-        when "list"
-          list_parks
-        when "exit"
-          greeting
-        else
-          puts "Invalid input. Please enter list or exit"
-      end #case
+       elsif input == "list"
+         list_parks
+         puts "Enter the number of the National Park you would like to learn more about! or exit"
+       elsif input == "exit"
+         greeting
+       else
+         puts "Invalid input. Please enter list or exit"
+       end
     end #while
   end #start
 

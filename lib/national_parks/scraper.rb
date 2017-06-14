@@ -3,7 +3,7 @@ class NationalParks::Scraper
 
   def park_scraper
     parks_title = page.css(".post-title")
-  end #park_scraper
+  end #park_scrape
 
   def parks_from_scraper
     park_titles = []
@@ -40,7 +40,6 @@ class NationalParks::Scraper
 
      all_paras.any? do |p|
        if p.text.include?("National park was established")
-          puts "Establishment"
          puts "#{p.text}"
          puts "                              "
        end
@@ -48,7 +47,6 @@ class NationalParks::Scraper
 
      all_paras.any? do |p|
        if p.text.include?("camping" || "Backcountry")
-         puts "Camping"
          puts "#{p.text}"
          puts "                              "
        end
@@ -56,7 +54,6 @@ class NationalParks::Scraper
 
      all_paras.any? do |p|
        if p.text.include?("Bicycle")
-         puts "Biking"
          puts "#{p.text}"
          puts "                              "
        end
@@ -64,7 +61,6 @@ class NationalParks::Scraper
 
      all_paras.any? do |p|
        if p.text.include?("viewing wildlife")
-         puts "Wildlife"
          puts "#{p.text}"
          puts "                              "
        end
@@ -72,7 +68,6 @@ class NationalParks::Scraper
 
      all_paras.any? do |p|
        if p.text.include?("fishing")
-         puts "Fishing"
          puts "#{p.text}"
          puts "                              "
        end
@@ -80,7 +75,6 @@ class NationalParks::Scraper
 
      all_paras.any? do |p|
        if p.text.include?("hiking trails")
-         puts "Hiking"
          puts "#{p.text}"
          puts "                              "
        end
@@ -88,7 +82,6 @@ class NationalParks::Scraper
 
      all_paras.any? do |p|
        if p.text.include?("lodging")
-         puts "Lodging "
          puts "#{p.text}"
          puts "                              "
        end
