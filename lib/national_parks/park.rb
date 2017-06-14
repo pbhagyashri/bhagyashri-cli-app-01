@@ -1,10 +1,9 @@
 class NationalParks::Park
-  attr_accessor :name, :doc
+  attr_accessor :name, :location, :highlight, :url, :doc
 
   @@all = []
 
-  def initialize(name)
-    @name = name
+  def initialize
     @@all << self
   end
 

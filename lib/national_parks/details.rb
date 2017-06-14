@@ -1,5 +1,5 @@
 class NationalParks::Details
-  attr_accessor :doc
+  attr_accessor :doc, :park
   def initialize(park_name)
     @park_name = park_name
     @doc = Nokogiri::HTML(open("https://www.national-park.com/welcome-to-#{park_name}-national-park/"))
