@@ -19,14 +19,6 @@ class NationalParks::Scraper
     park_titles.drop(1)
   end
 
-  def self.park_titles
-    parks_from_scraper.collect do |park|
-      first_half = park.name.gsub("Welcome to", "")
-      name = first_half.gsub("National Park", "").strip.downcase
-      name.include?(" ") ? name.gsub(" ", "-") : name
-    end
-  end
-
   def visit_park(title)
     @visit_park = NationalParks::Details.new(title)
     @visit_park.doc.css("p a").attr("href").text
